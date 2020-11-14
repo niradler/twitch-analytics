@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<main>
+    <div class="jumbotron">
+       
+        <div class="row">
+            <div class="col-9">
+                <h1><%= user.data[0].display_name %> </h1>
+                <p><%= user.data[0].description %></p>
+                <p><span class="badge badge-secondary"><%= user.data[0].view_count %> Views</span></p>
+            </div>
+            <div class="col">
+                  <img src="<%= streams.data.length === 0 ? user.data[0].offline_image_url : user.data[0].profile_image_url %>" width="200" height="200" />
+            </div>           
+          </div>
+          <hr />
+          <h3>Videos</h3>
+          <div class="row">
+          <% videos.data.forEach(function(video) { %>
+            <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="<%= video.thumbnail_url.replace("%{width}",200).replace("%{height}",200) %>" class="card-img-top" alt="thumbnail_url"  width="200" height="200">
+                <div class="card-body">
+                  <h5 class="card-title"><%= video.title %></h5>
+                  <p class="card-text"><%= video.description %></p>                  
+                  <a href=<%= video.url %> target="_blank" class="btn btn-primary">Watch</a>
+                  <span class="badge badge-secondary"><%= video.view_count %> Views</span>
+                </div>
+              </div>
+            </div>
+        <% }); %>
+    </div>
+          
+    </div>
+
+   
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>    
+</footer>
+
+</body>
+</html>
